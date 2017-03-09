@@ -44,24 +44,29 @@ function fibHelper(n)
 	return { 'value': value, 'html': div };
 }
 
-function pellHelper(n) {
+function pellHelper(n)
+{
     var value;
     var div = document.createElement('div');
     div.setAttribute("class", "pell");
 
     // leaf nodes aka. base case
-    if (n < 2) {
-        if (n === 0) {
+    if (n < 2)
+    {
+        if (n === 0)
+        {
             value = 0;
         }
-        else if (n === 1) {
+        else if (n === 1)
+        {
             value = 1;
         }
         var p = document.createElement('p');
         p.textContent = 'Fib(' + n + ') = ' + value;
         div.appendChild(p)
     }
-    else {
+    else
+    {
         var left = pellHelper(n - 1)*2;
         var clas = left.html.getAttribute("class");
         left.html.setAttribute("class", clas + " pell-left");
