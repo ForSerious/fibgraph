@@ -62,7 +62,7 @@ function pellHelper(n)
             value = 1;
         }
         var p = document.createElement('p');
-        p.textContent = 'Fib(' + n + ') = ' + value;
+        p.textContent = 'Pell(' + n + ') = ' + value;
         div.appendChild(p)
     }
     else
@@ -77,10 +77,61 @@ function pellHelper(n)
 
         value = left.value + right.value;
         var p = document.createElement('p');
-        p.textContent = 'pell(' + n + ') = ' + value;
+        p.textContent = 'Pell(' + n + ') = ' + value;
         div.appendChild(p);
 
         div.appendChild(left.html);
+        div.appendChild(right.html);
+    }
+    return { 'value': value, 'html': div };
+}
+
+function triHelper(n)
+{
+    var value;
+    var div = document.createElement('div');
+    div.setAttribute("class", "tri");
+
+    // leaf nodes aka. base case
+    if (n < 3)
+    {
+        if (n === 0)
+        {
+            value = 0;
+        }
+        else if (n === 1)
+        {
+            value = 0;
+        }
+        else if (n === 2)
+        {
+            value = 1;
+        }
+        var p = document.createElement('p');
+        p.textContent = 'Tri(' + n + ') = ' + value;
+        div.appendChild(p)
+    }
+    else
+    {
+        var left = triHelper(n - 1);
+        var clas = left.html.getAttribute("class");
+        left.html.setAttribute("class", clas + " tri-left");
+
+        var mid = triHelper(n - 2);
+        var clas = mid.html.getAttribute("class");
+        mid.html.setAttribute("class", clas + " tri-mid");
+
+        var right = triHelper(n - 3);
+        clas = right.html.getAttribute("class");
+        right.html.setAttribute("class", clas + " tri-right");
+
+        value = left.value + mid.value + right.value;
+        var p = document.createElement('p');
+        p.textContent = 'Tri(' + n + ') = ' + value;
+        div.appendChild(p);
+
+        div.appendChild(left.html);
+        div.appendChild(mid.html);
         div.appendChild(right.html);
     }
     return { 'value': value, 'html': div };
