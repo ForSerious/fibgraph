@@ -62,7 +62,8 @@ function pellHelper(n) {
         div.appendChild(p)
     }
     else {
-        var left = pellHelper(n - 1) * 2;
+        var left = pellHelper(n - 1);
+        left.value = left.value * 2;
         var clas = left.html.getAttribute("class");
         left.html.setAttribute("class", clas + " pell-left");
 
@@ -239,7 +240,7 @@ style.textContent =
 
 document.querySelector('body').appendChild(style);
 
-document.title = "Sequec\xEDas.";
+document.title = "Sequ\xE9cias.";
 
 // IIFE = Immediately-invoked function expression
 // An anonymous function which we create, invoke, then throw away.
