@@ -176,6 +176,31 @@ style.textContent =
 	"	display: inline-block;" +
 	"	margin-left: 4px;" +
 	"}" +//
+    "#tri {" +
+	"	display: inline-block;" +
+	"	width: 12700px;" +
+	"}" +
+	"" +
+	".tri {" +
+	"	background-color: rgba(255,0,0,0.1);" +
+	"}" +
+	"" +
+	".tri-left {" +
+	"	float: left;" +
+	"	display: inline-block;" +
+	"	margin-right: 4px;" +
+	"}" +
+	"" +
+	".tri-right {" +
+	"	float: right;" +
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +
+    ".tri-mid {" +
+	"	float;" +/////////It worked!
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +
     "#pell {" +
 	"	display: inline-block;" +
 	"	width: 12700px;" +
@@ -277,10 +302,10 @@ var blueDiv = divMakerMaker('blue', 'fib');
 var yellowDiv = divMakerMaker('yellow', 'pell');
 var greenDiv = divMakerMaker('green', 'tri');
 
-blueDiv();
+//blueDiv();
 yellowDiv();
 greenDiv();
 
-fib(5, document.querySelector('.blue'));
-pell(5, document.querySelector('.yellow'));
-tri(7, document.querySelector('.green'));
+//fib(5, document.querySelector('.blue'));
+pell(11, document.querySelector('.yellow'));
+tri(11, document.querySelector('.green'));
