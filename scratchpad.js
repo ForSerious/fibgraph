@@ -44,30 +44,25 @@ function fibHelper(n)
 	return { 'value': value, 'html': div };
 }
 
-function pellHelper(n)
-{
+function pellHelper(n) {
     var value;
     var div = document.createElement('div');
     div.setAttribute("class", "pell");
 
     // leaf nodes aka. base case
-    if (n < 2)
-    {
-        if (n === 0)
-        {
+    if (n < 2) {
+        if (n === 0) {
             value = 0;
         }
-        else if (n === 1)
-        {
+        else if (n === 1) {
             value = 1;
         }
         var p = document.createElement('p');
         p.textContent = 'Pell(' + n + ') = ' + value;
         div.appendChild(p)
     }
-    else
-    {
-        var left = pellHelper(n - 1)*2;
+    else {
+        var left = pellHelper(n - 1) * 2;
         var clas = left.html.getAttribute("class");
         left.html.setAttribute("class", clas + " pell-left");
 
@@ -136,6 +131,7 @@ function triHelper(n)
     }
     return { 'value': value, 'html': div };
 }
+
 var fib = function (n, node) {
 	var tree = fibHelper(n)
 		node.appendChild(tree.html);
@@ -143,11 +139,25 @@ var fib = function (n, node) {
 	  node.setAttribute("id", "fib");
 }
 
+var pell = function (n, node) {
+    var tree = pellHelper(n)
+    node.appendChild(tree.html);
+    //node.style = "display: inline-block;";
+    node.setAttribute("id", "pell");
+}
+
+var tri = function (n, node) {
+    var tree = triHelper(n)
+    node.appendChild(tree.html);
+    //node.style = "display: inline-block;";
+    node.setAttribute("id", "tri");
+}
+
 var style = document.createElement('style');
 style.textContent = 
 	"#fib {" +
 	"	display: inline-block;" +
-	"	width: 9700px;" +
+	"	width: 12700px;" +
 	"}" +
 	"" +
 	".fib {" +
@@ -164,7 +174,27 @@ style.textContent =
 	"	float: right;" +
 	"	display: inline-block;" +
 	"	margin-left: 4px;" +
+	"}" +//
+    "#pell {" +
+	"	display: inline-block;" +
+	"	width: 12700px;" +
 	"}" +
+	"" +
+	".pell {" +
+	"	background-color: rgba(0,0,255,0.1);" +
+	"}" +
+	"" +
+	".pell-left {" +
+	"	float: left;" +
+	"	display: inline-block;" +
+	"	margin-right: 4px;" +
+	"}" +
+	"" +
+	".pell-right {" +
+	"	float: right;" +
+	"	display: inline-block;" +
+	"	margin-left: 4px;" +
+	"}" +//
 	"" +
 	".shadowed {" +
 	"	text-shadow: 1px 1px 2px black;" +
@@ -226,7 +256,7 @@ document.title = "Sequec\xEDas.";
 	document.body.appendChild(div);
 }('red', 'fib'));
 
-fib(9, document.querySelector('.red'))
+fib(11, document.querySelector('.red'))
 
 
 // divMakerMaker() is a function which returns a function
@@ -243,11 +273,13 @@ var divMakerMaker = function(color, id) {
 }
 
 var blueDiv = divMakerMaker('blue', 'fib');
-var yellowDiv = divMakerMaker('yellow', 'rogue');
-var greenDiv = divMakerMaker('green', 'trib');
+var yellowDiv = divMakerMaker('yellow', 'pell');
+var greenDiv = divMakerMaker('green', 'tri');
 
 blueDiv();
 yellowDiv();
+greenDiv();
 
-fib(5, document.querySelector('.blue'))
-fib(7, document.querySelector('.yellow'))
+fib(5, document.querySelector('.blue'));
+pell(5, document.querySelector('.yellow'));
+tri(7, document.querySelector('.green'));
