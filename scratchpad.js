@@ -1,11 +1,4 @@
-/*
- * This is a JavaScript Scratchpad.
- *
- * Enter some JavaScript, then Right Click or choose from the Execute Menu:
- * 1. Run to evaluate the selected text (Ctrl+R),
- * 2. Inspect to bring up an Object Inspector on the result (Ctrl+I), or,
- * 3. Display to insert the result in a comment after the selection. (Ctrl+L)
- */
+
 function fibHelper(n)
 {
 	var value;
@@ -44,24 +37,29 @@ function fibHelper(n)
 	return { 'value': value, 'html': div };
 }
 
-function pellHelper(n) {
+function pellHelper(n)
+{
     var value;
     var div = document.createElement('div');
     div.setAttribute("class", "pell");
 
     // leaf nodes aka. base case
-    if (n < 2) {
-        if (n === 0) {
+    if (n < 2)
+    {
+        if (n === 0)
+        {
             value = 0;
         }
-        else if (n === 1) {
+        else if (n === 1)
+        {
             value = 1;
         }
         var p = document.createElement('p');
         p.textContent = 'Pell(' + n + ') = ' + value;
         div.appendChild(p)
     }
-    else {
+    else
+    {
         var left = pellHelper(n - 1);
         left.value = left.value * 2;
         var clas = left.html.getAttribute("class");
@@ -133,21 +131,24 @@ function triHelper(n)
     return { 'value': value, 'html': div };
 }
 
-var fib = function (n, node) {
+var fib = function (n, node)
+{
 	var tree = fibHelper(n)
 		node.appendChild(tree.html);
 		//node.style = "display: inline-block;";
 	  node.setAttribute("id", "fib");
 }
 
-var pell = function (n, node) {
+var pell = function (n, node)
+{
     var tree = pellHelper(n)
     node.appendChild(tree.html);
     //node.style = "display: inline-block;";
     node.setAttribute("id", "pell");
 }
 
-var tri = function (n, node) {
+var tri = function (n, node)
+{
     var tree = triHelper(n)
     node.appendChild(tree.html);
     //node.style = "display: inline-block;";
@@ -158,11 +159,11 @@ var style = document.createElement('style');
 style.textContent = 
 	"#fib {" +
 	"	display: inline-block;" +
-	"	width: 12700px;" +
+	"	width: 12550px;" +
 	"}" +
 	"" +
 	".fib {" +
-	"	background-color: rgba(0,0,255,0.1);" +
+	"	background-color: rgba(15,15,15,0.1);" +
 	"}" +
 	"" +
 	".fib-left {" +
@@ -178,7 +179,7 @@ style.textContent =
 	"}" +//
     "#tri {" +
 	"	display: inline-block;" +
-	"	width: 12700px;" +
+	"	width: 29000px;" +
 	"}" +
 	"" +
 	".tri {" +
@@ -203,11 +204,11 @@ style.textContent =
 	"}" +
     "#pell {" +
 	"	display: inline-block;" +
-	"	width: 12700px;" +
+	"	width: 13350px;" +
 	"}" +
 	"" +
 	".pell {" +
-	"	background-color: rgba(0,0,255,0.1);" +
+	"	background-color: rgba(0,255,0,0.1);" +
 	"}" +
 	"" +
 	".pell-left {" +
@@ -263,34 +264,56 @@ style.textContent =
 	"	box-shadow: 1px 1px 2px rgba(0,200,0,0.4);" +
 	"}";
 
-document.querySelector('body').appendChild(style);
+document.body.appendChild(style);
+var linkText = document.createTextNode("my title text");
+
+var addLinkToBody = function (tDisplay, lLink, theDiv)
+{
+    return function ()
+    {
+        var linker = document.createElement('a');
+        linker.appendChild(tDisplay);
+        //a.title = tDisplay;
+        linker.href = lLink;
+        theDiv.appendChild(linker);
+    }
+}
+
+var addTextToP = function (tDisplay, theP, theBool)
+{
+    {
+        theP.appendChild(tDisplay);
+        if(theBool)
+        {
+            theP.appendChild(document.createElement('br'));
+        }
+    }
+}
 
 document.title = "Sequ\xE9cias.";
 
-// IIFE = Immediately-invoked function expression
-// An anonymous function which we create, invoke, then throw away.
-// It exists to meet these aims:
-//   0) Avoid clobbering an existing variable named "div" in the global namespace. I don't have
-//      another variable called "div" today, but this protects my webpage in the event that I
-//      later incorporate other JavaScript programs from elsewhere.
-//   1) Collect a few related program statements and keep them together in a single unit.
-// https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
-( function(color, id) {
-	var div = document.createElement('div');
-	div.setAttribute('class', color + ' shadowed stuff-box');
-	div.setAttribute('id', id);
-	document.body.appendChild(div);
-}('red', 'fib'));
+var verDiv = document.createElement('div');
+var yonText = document.createElement('p');
+var redLink = addLinkToBody(document.createTextNode("red box"), "https://oeis.org/A000045", yonText);
+var bluLink = addLinkToBody(document.createTextNode("blue box"), "https://oeis.org/A000129", yonText);
+var greLink = addLinkToBody(document.createTextNode("green box"), "https://oeis.org/A000073", yonText);
+yonText.textContent = 'On this page, the ';
+redLink();
+addTextToP(document.createTextNode(' shows a tree representation of the Fibonacci sequence to the 11th time.'), yonText, true);
+addTextToP(document.createTextNode('The '), yonText, false);
+bluLink();
+addTextToP(document.createTextNode(' shows one of the Pell sequence to the 11th time.'), yonText, true);
+addTextToP(document.createTextNode('Lastly, the '), yonText, false);
+greLink();
+addTextToP(document.createTextNode(' shows one of the Tribonacci sequence to the 11th time.'), yonText, true);
+addTextToP(document.createTextNode('Enjoy!'), yonText, false);
+verDiv.appendChild(yonText);
+document.body.appendChild(verDiv);
 
-fib(11, document.querySelector('.red'))
-
-
-// divMakerMaker() is a function which returns a function
-// divMakerMaker() takes two arguments and creates a function which requires
-// no arguments of its own, but upon invocation "remembers" the functions it
-// was created with
-var divMakerMaker = function(color, id) {
-	return function() {
+var divMakerMaker = function (color, id)
+{
+    return function ()
+    {
 		var div = document.createElement('div');
 		div.setAttribute('class', color + ' shadowed stuff-box');
 		div.setAttribute('id', id);
@@ -298,14 +321,14 @@ var divMakerMaker = function(color, id) {
 	}
 }
 
-var blueDiv = divMakerMaker('blue', 'fib');
-var yellowDiv = divMakerMaker('yellow', 'pell');
+var RedDiv = divMakerMaker('red', 'fib');
+var BlueDiv = divMakerMaker('blue', 'pell');
 var greenDiv = divMakerMaker('green', 'tri');
 
-//blueDiv();
-yellowDiv();
+RedDiv();
+BlueDiv();
 greenDiv();
 
-//fib(5, document.querySelector('.blue'));
-pell(11, document.querySelector('.yellow'));
+fib(11, document.querySelector('.red'))
+pell(11, document.querySelector('.blue'));
 tri(11, document.querySelector('.green'));
