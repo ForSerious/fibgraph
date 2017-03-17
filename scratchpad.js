@@ -325,6 +325,21 @@ addTextToP(document.createTextNode('Enjoy!'), yonText, false);
 verDiv.appendChild(yonText);
 document.body.appendChild(verDiv);
 
+var fibButton = function (me)
+{
+    var form = me.parentNode;
+    var slider = form.querySelector('input');
+    var value = slider.value;
+    fib(value, form.parentNode);
+}
+
+var fibSlider = function (me)
+{
+    var form = me.parentNode;
+    var button = form.querySelector('button');
+    button.textContent = 'Fib(' + me.value + ')';
+}
+
 var divMakerMaker = function (color, id)
 {
     return function ()
@@ -343,6 +358,24 @@ var greenDiv = divMakerMaker('green', 'tri');
 RedDiv();
 BlueDiv();
 greenDiv();
+
+var addSlider = function(toWhat)
+{
+    var vSlid = document.createElement('input');
+    vSlid.setAttribute('type', range);
+    vSlid.setAttribute('min', 0);
+    vSlid.setAttribute('max', 11);
+    vSlid.setAttribute('value', 5);
+    vSlid.setAttribute('step', 1);
+    vSlid.setAttribute('id', toWhat.id + 'Slid');
+    vSlid.setAttribute('onchange', showChange(this.value,this.id))
+    toWhat.appendChild(vSlid);
+}
+
+var showChange = function(num,id)
+{
+    document.getElementById(id).innerHTML = num;
+}
 
 fib(11, document.querySelector('.red'))
 pell(11, document.querySelector('.blue'));
