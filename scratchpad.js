@@ -223,7 +223,7 @@ style.textContent =
 	"}" +
 	"" +
 	".pell {" +
-	"	background-color: rgba(0,255,0,0.1);" +
+	"	background-color: rgba(0,255,0,0.1);"+
 	"}" +
 	"" +
 	".pell-left {" +
@@ -370,6 +370,25 @@ var addSlider = function(toWhat)
     vSlid.setAttribute('id', toWhat.id + 'Slid');
     vSlid.setAttribute('onchange', showChange(this.value,this.id))
     toWhat.appendChild(vSlid);
+    var vButan = document.createElement('button');
+    vButan.setAttribute('id', toWhat.id + 'btn');
+    vButan.setAttribute('type', button);
+    var vWhat;
+    if(toWhat.id == "fib")
+    {
+        vWhat = fib;
+    }
+    if(toWhat.id == "pell")
+    {
+        vWhat = pell;
+    }
+    if(toWhat.id == "tri")
+    {
+        vWhat = tri;
+    }
+
+    vButan.setAttribute('_onclick_', vWhat())
+
 }
 
 var showChange = function(num,id)
