@@ -155,7 +155,7 @@ var tri = function (n, node)
     node.setAttribute("id", "tri");
 }
 
-var fibButton = function (me)
+/*var fibButton = function (me)
 {
     var form = me.parentNode;
     var slider = form.querySelector('input');
@@ -168,7 +168,7 @@ var fibSlider = function (me)
     var form = me.parentNode;
     var button = form.querySelector('button');
     button.textContent = 'Fib(' + me.value + ')';
-}
+}*/
 
 var style = document.createElement('style');
 style.textContent = 
@@ -340,7 +340,7 @@ var fibSlider = function (me)
     button.textContent = 'Fib(' + me.value + ')';
 }
 
-var divMakerMaker = function (color, id)
+/*var divMakerMaker = function (color, id)
 {
     return function ()
     {
@@ -357,12 +357,31 @@ var greenDiv = divMakerMaker('green', 'tri');
 
 RedDiv();
 BlueDiv();
-greenDiv();
+greenDiv();*/
 
+var showChange = function (num, id, func)
+{
+    document.getElementById(id).innerHTML = func +"(" + num + ")";
+}
+
+var clearDiv = function(node)
+{
+    var vDiv = document.getElementById(node);
+    while(vDiv.hasChildNodes())
+    {
+        vDiv.removeChild(vDiv.lastChild);
+    }
+}
+var fillFib = function(value,node)
+{
+    clearDiv(node);
+    var vNum = document.getElementById(value);
+    fib(vNum.value, document.getElementById(node));
+}
 var addSlider = function(toWhat)
 {
     var vSlid = document.createElement('input');
-    vSlid.setAttribute('type', range);
+    vSlid.setAttribute('type', 'range');
     vSlid.setAttribute('min', 0);
     vSlid.setAttribute('max', 11);
     vSlid.setAttribute('value', 5);
@@ -372,7 +391,7 @@ var addSlider = function(toWhat)
     toWhat.appendChild(vSlid);
     var vButan = document.createElement('button');
     vButan.setAttribute('id', toWhat.id + 'btn');
-    vButan.setAttribute('type', button);
+    vButan.setAttribute('type', 'button');
     var vWhat;
     if(toWhat.id == "fib")
     {
@@ -390,12 +409,15 @@ var addSlider = function(toWhat)
     vButan.setAttribute('_onclick_', vWhat())
 
 }
-
-var showChange = function(num,id)
+/*var addForm = function(theDiv)
 {
-    document.getElementById(id).innerHTML = num;
-}
+    var vForm = document.createElement('form');
+    addSlider(vForm);
+    theDiv.appendChild(vForm);
+}*/
 
-fib(11, document.querySelector('.red'))
+//addForm(document.querySelector('.red'));
+
+/*fib(11, document.querySelector('.red'))
 pell(11, document.querySelector('.blue'));
-tri(11, document.querySelector('.green'));
+tri(11, document.querySelector('.green'));*/
