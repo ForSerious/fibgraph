@@ -6,11 +6,14 @@ function fibHelper(n)
 	div.setAttribute("class", "fib");
 
 	// leaf nodes aka. base case
-	if (n < 2) {
-		if (n === 0) {
+	if (n < 2)
+	{
+	    if (n <= 0)
+	    {
 			value = 0;
 		} 
-		else if (n === 1) {
+	    else// if (n === 1)
+	    {
 			value = 1;
 		}
 		var p = document.createElement('p');
@@ -46,11 +49,11 @@ function pellHelper(n)
     // leaf nodes aka. base case
     if (n < 2)
     {
-        if (n === 0)
+        if (n <= 0)
         {
             value = 0;
         }
-        else if (n === 1)
+        else //if (n === 1)
         {
             value = 1;
         }
@@ -89,7 +92,7 @@ function triHelper(n)
     // leaf nodes aka. base case
     if (n < 3)
     {
-        if (n === 0)
+        if (n <= 0)
         {
             value = 0;
         }
@@ -97,7 +100,7 @@ function triHelper(n)
         {
             value = 0;
         }
-        else if (n === 2)
+        else
         {
             value = 1;
         }
@@ -175,6 +178,21 @@ style.textContent =
 	"#fib {" +
 	"	display: inline-block;" +
 	"	width: 12550px;" +
+	"}" +
+	"" +
+    "#fibHead {" +
+	"	display: inline-block;" +
+	"	width: 12550px;" +
+	"}" +
+	"" +
+    "#redSlid {" +
+	"	display: inline-block;" +
+	"	float: left;" +
+	"}" +
+	"" +
+    "#redBtn {" +
+	"	display: inline-block;" +
+	"	float: left;" +
 	"}" +
 	"" +
 	".fib {" +
@@ -377,6 +395,16 @@ var fillFib = function(value,node)
     clearDiv(node);
     var vNum = document.getElementById(value);
     fib(vNum.value, document.getElementById(node));
+}
+var fillPell = function (value, node) {
+    clearDiv(node);
+    var vNum = document.getElementById(value);
+    pell(vNum.value, document.getElementById(node));
+}
+var fillTri = function (value, node) {
+    clearDiv(node);
+    var vNum = document.getElementById(value);
+    tri(vNum.value, document.getElementById(node));
 }
 var addSlider = function(toWhat)
 {
