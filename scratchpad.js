@@ -215,8 +215,23 @@ style.textContent =
 	"	width: 29000px;" +
 	"}" +
 	"" +
+    "#triHead {" +
+	"	display: inline-block;" +
+	"	width: 29000px;" +
+	"}" +
+	"" +
+    "#greSlid {" +
+	"	display: inline-block;" +
+	"	float: left;" +
+	"}" +
+	"" +
 	".tri {" +
 	"	background-color: rgba(255,0,0,0.1);" +
+	"}" +
+	"" +
+    "#greBtn {" +
+	"	display: inline-block;" +
+	"	float: left;" +
 	"}" +
 	"" +
 	".tri-left {" +
@@ -238,6 +253,21 @@ style.textContent =
     "#pell {" +
 	"	display: inline-block;" +
 	"	width: 13350px;" +
+	"}" +
+	"" +
+    "#pellHead {" +
+	"	display: inline-block;" +
+	"	width: 13350px;" +
+	"}" +
+	"" +
+    "#bluSlid {" +
+	"	display: inline-block;" +
+	"	float: left;" +
+	"}" +
+	"" +
+    "#bluBtn {" +
+	"	display: inline-block;" +
+	"	float: left;" +
 	"}" +
 	"" +
 	".pell {" +
@@ -332,13 +362,13 @@ var bluLink = addLinkToBody(document.createTextNode("blue box"), "https://oeis.o
 var greLink = addLinkToBody(document.createTextNode("green box"), "https://oeis.org/A000073", yonText);
 yonText.textContent = 'On this page, the ';
 redLink();
-addTextToP(document.createTextNode(' shows a tree representation of the Fibonacci sequence to the 11th time.'), yonText, true);
+addTextToP(document.createTextNode(' can show a tree representation of the Fibonacci sequence from 0 to the 11th time.'), yonText, true);
 addTextToP(document.createTextNode('The '), yonText, false);
 bluLink();
-addTextToP(document.createTextNode(' shows one of the Pell sequence to the 11th time.'), yonText, true);
+addTextToP(document.createTextNode(' can show one of the Pell sequence from 0 to the 11th time.'), yonText, true);
 addTextToP(document.createTextNode('Lastly, the '), yonText, false);
 greLink();
-addTextToP(document.createTextNode(' shows one of the Tribonacci sequence to the 11th time.'), yonText, true);
+addTextToP(document.createTextNode(' can show one of the Tribonacci sequence from 0 to the 11th time.'), yonText, true);
 addTextToP(document.createTextNode('Enjoy!'), yonText, false);
 verDiv.appendChild(yonText);
 document.body.appendChild(verDiv);
